@@ -1,7 +1,7 @@
-import google.generativeai as genai
+from utils.gemini_utils import setup_gemini
 
 # ✅ STEP 1: Configure Gemini API
-genai.configure(api_key="AIzaSyAKc-1PNgntZHQvUX0Vpf-NWgsWpA6gK24")
+model = setup_gemini()
 
 # ✅ STEP 2: User Input
 user_genre = input("🎵 Enter the song genre: ").strip()
@@ -20,8 +20,7 @@ Predict the **most appropriate emotion/mood** associated with the song.
 """
 
 # ✅ STEP 4: Generate Mood Prediction from Gemini
-model = genai.GenerativeModel("gemini-1.5-pro")
-response = model.generate_content(prompt_text)
+response = model.generate_content(prompt_text)  # Remove the redundant model initialization
 
 # ✅ STEP 5: Extract and Print Mood
 predicted_mood = response.text.strip()
