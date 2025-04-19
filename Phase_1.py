@@ -1,4 +1,5 @@
 from utils.gemini_utils import setup_gemini
+from utils.file_utils import save_lyrics
 
 # ✅ STEP 1: Configure Gemini API
 model = setup_gemini()
@@ -73,12 +74,16 @@ generated_lyrics = lyrics_response.text.strip()
 print("\n🎶 **Generated Lyrics:**\n")
 print(generated_lyrics)
 
+# ✅ STEP 10: Save the lyrics to a file
+filename = input("\n💾 Enter filename to save lyrics: ").strip()
+saved_path = save_lyrics(generated_lyrics, filename)
+print(f"\n✅ Lyrics saved to: {saved_path}")
 
 # ##################
 
-# ✅ STEP 10: Export for use in melody.py
+# ✅ STEP 11: Export for use in melody.py
 if __name__ == "__main__":
-    pass  # So Phase_1 doesn't execute when imported
+    pass
 
 # Expose these variables for external modules
 __all__ = ['generated_lyrics', 'predicted_mood']
